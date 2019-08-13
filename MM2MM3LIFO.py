@@ -273,12 +273,12 @@ def partida1_A():
         tiempo_proximo_evento[2]= 1000000000000000000000
     else:
         num_en_cola1_A=num_en_cola1_A-1
-        demora = tiempo - tiempo_arrivo1_A[1]
+        demora = tiempo - tiempo_arrivo1_A[num_en_cola1_A+1]
         total_de_demoras = total_de_demoras + demora
         num_cliente_demorados= num_cliente_demorados+1
         tiempo_proximo_evento[2]= tiempo + expon(media_servicio1_A)
-        for i in range (1, num_en_cola1_A+1 ):
-            tiempo_arrivo1_A[i] = tiempo_arrivo1_A[i+1]
+        tiempo_arrivo1_A[num_en_cola1_A+1] = 0
+
 
 def partida1_B():
     global tiempo
@@ -294,12 +294,11 @@ def partida1_B():
         tiempo_proximo_evento[3]= 1000000000000000000000
     else:
         num_en_cola1_B=num_en_cola1_B-1
-        demora = tiempo - tiempo_arrivo1_B[1]
+        demora = tiempo - tiempo_arrivo1_B[num_en_cola1_B+1]
         total_de_demoras = total_de_demoras + demora
         num_cliente_demorados= num_cliente_demorados+1
         tiempo_proximo_evento[3]= tiempo + expon(media_servicio1_B)
-        for i in range (1, num_en_cola1_B+1 ):
-            tiempo_arrivo1_B[i] = tiempo_arrivo1_B[i+1]
+        tiempo_arrivo1_B[num_en_cola1_B+1] = 0
 
 
 def todosOcupados():
@@ -379,12 +378,11 @@ def partida2_A():
         tiempo_proximo_evento[4]= 1000000000000000000000
     else:
         num_en_cola2=num_en_cola2-1
-        demora = tiempo - tiempo_arrivo2[1]
+        demora = tiempo - tiempo_arrivo2[num_en_cola2+1]
         total_de_demoras = total_de_demoras + demora
         num_cliente_demorados= num_cliente_demorados+1
         tiempo_proximo_evento[4]= tiempo + expon(media_servicio2_A)
-        for i in range (1, num_en_cola2+1 ):
-            tiempo_arrivo2[i] = tiempo_arrivo2[i+1]
+        tiempo_arrivo2[num_en_cola2+1] = 0
 
 
 def partida2_B():
@@ -401,12 +399,11 @@ def partida2_B():
         tiempo_proximo_evento[5]= 1000000000000000000000
     else:
         num_en_cola2=num_en_cola2-1
-        demora = tiempo - tiempo_arrivo2[1]
+        demora = tiempo - tiempo_arrivo2[num_en_cola2+1]
         total_de_demoras = total_de_demoras + demora
         num_cliente_demorados= num_cliente_demorados+1
         tiempo_proximo_evento[5]= tiempo + expon(media_servicio2_B)
-        for i in range (1, num_en_cola2+1 ):
-            tiempo_arrivo2[i] = tiempo_arrivo2[i+1]
+        tiempo_arrivo2[num_en_cola2+1] = 0
 
 
 def partida2_C():
@@ -423,12 +420,11 @@ def partida2_C():
         tiempo_proximo_evento[6]= 1000000000000000000000
     else:
         num_en_cola2=num_en_cola2-1
-        demora = tiempo - tiempo_arrivo2[1]
+        demora = tiempo - tiempo_arrivo2[num_en_cola2+1]
         total_de_demoras = total_de_demoras + demora
         num_cliente_demorados= num_cliente_demorados+1
         tiempo_proximo_evento[6]= tiempo + expon(media_servicio2_C)
-        for i in range (1, num_en_cola2+1 ):
-            tiempo_arrivo2[i] = tiempo_arrivo2[i+1]
+        tiempo_arrivo2[num_en_cola2+1]=0
 
 def actualizar_estadisticos():
     global tiempo

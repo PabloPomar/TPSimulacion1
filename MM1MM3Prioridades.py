@@ -237,7 +237,7 @@ def arrivo1_A():
         num_en_cola = num_en_cola + 1
         if (num_en_cola1_A>limite_cola):
             print("Sobrecarga de limite cola en el tiempo:" + str(tiempo) )
-        tiempo_arrivo1_A[num_en_cola1_A]= tiempo
+        tiempo_arrivo1_A[0][num_en_cola1_A]= tiempo
     else:
         demora=0
         total_de_demoras= total_de_demoras+ demora
@@ -263,7 +263,7 @@ def arrivo1_B():
         num_en_cola = num_en_cola + 1
         if (num_en_cola1_B>limite_cola):
             print("Sobrecarga de limite cola en el tiempo:" + str(tiempo) )
-        tiempo_arrivo1_B[num_en_cola1_B]= tiempo
+        tiempo_arrivo1_B[0][num_en_cola1_B]= tiempo
     else:
         demora=0
         total_de_demoras= total_de_demoras+ demora
@@ -286,11 +286,12 @@ def partida1_A():
     global total_de_demoras
     global num_cliente_demorados
     masPesado =1
-    for i in range (0, num_en_cola1_A+1):
-        valor1 = tiempo_arrivo1_A[1][i]
-        valor2 = tiempo_arrivo1_A[1][i+1]
-        if valor2 > valor1 :
-            masPesado = i+1
+    if (num_en_cola1_A>1):
+        for i in range (1, 100):
+            valor1 = tiempo_arrivo1_A[1][i]
+            valor2 = tiempo_arrivo1_A[1][i+1]
+            if valor2 > valor1:
+                masPesado = i+1
     if (num_en_cola1_A==0):
         estado_server1_A=0
         tiempo_proximo_evento[2]= 1000000000000000000000
@@ -300,8 +301,10 @@ def partida1_A():
         total_de_demoras = total_de_demoras + demora
         num_cliente_demorados= num_cliente_demorados+1
         tiempo_proximo_evento[2]= tiempo + expon(media_servicio1_A)
-        tiempo_arrivo1_A[1][masPesado] = 0
-        tiempo_arrivo1_A[0][masPesado] = 0
+        for j in range (masPesado, num_en_cola1_A+1):
+            tiempo_arrivo1_A[1][j] = tiempo_arrivo1_A[1][j+1]
+            tiempo_arrivo1_A[0][j] = tiempo_arrivo1_A[0][j+1]
+
 
 def partida1_B():
     global tiempo
@@ -313,11 +316,12 @@ def partida1_B():
     global total_de_demoras
     global num_cliente_demorados
     masPesado =1
-    for i in range (1, num_en_cola1_B+1):
-        valor1 = tiempo_arrivo1_B[1][i]
-        valor2 = tiempo_arrivo1_B[1][i + 1]
-        if valor2 > valor1:
-            masPesado = i+1
+    if ( num_en_cola1_B>1):
+        for i in range (1, 100):
+            valor1 = tiempo_arrivo1_B[1][i]
+            valor2 = tiempo_arrivo1_B[1][i + 1]
+            if valor2 > valor1:
+                masPesado = i+1
     if (num_en_cola1_B==0):
         estado_server1_B=0
         tiempo_proximo_evento[3]= 1000000000000000000000
@@ -327,8 +331,9 @@ def partida1_B():
         total_de_demoras = total_de_demoras + demora
         num_cliente_demorados= num_cliente_demorados+1
         tiempo_proximo_evento[3]= tiempo + expon(media_servicio1_B)
-        tiempo_arrivo1_A[1][masPesado] = 0
-        tiempo_arrivo1_A[0][masPesado] = 0
+        for j in range(masPesado, num_en_cola1_B + 1):
+            tiempo_arrivo1_B[1][j] = tiempo_arrivo1_B[1][j + 1]
+            tiempo_arrivo1_B[0][j] = tiempo_arrivo1_B[0][j + 1]
 
 
 def todosOcupados():
@@ -380,7 +385,7 @@ def arrivo2():
         if peso <= 0.05:
             tiempo_arrivo2[1][num_en_cola2] = 5
         else:
-            tiempo_arrivo1_A[1][num_en_cola2] = 1
+            tiempo_arrivo2[1][num_en_cola2] = 1
     else:
         desocupado = cualDesocupado()
         demora=0
@@ -409,11 +414,12 @@ def partida2_A():
     global total_de_demoras
     global num_cliente_demorados
     masPesado =1
-    for i in range (1, num_en_cola2+1):
-        valor1 = tiempo_arrivo2[1][i]
-        valor2 = tiempo_arrivo2[1][i + 1]
-        if valor2 > valor1:
-            masPesado = i+1
+    if(num_en_cola2>1):
+        for i in range (1, 100):
+            valor1 = tiempo_arrivo2[1][i]
+            valor2 = tiempo_arrivo2[1][i + 1]
+            if valor2 > valor1:
+                masPesado = i+1
     if (num_en_cola2==0):
         estado_server2_A=0
         tiempo_proximo_evento[4]= 1000000000000000000000
@@ -423,8 +429,10 @@ def partida2_A():
         total_de_demoras = total_de_demoras + demora
         num_cliente_demorados= num_cliente_demorados+1
         tiempo_proximo_evento[4]= tiempo + expon(media_servicio2_A)
-        tiempo_arrivo2[1][masPesado] = 0
-        tiempo_arrivo2[0][masPesado] = 0
+        for j in range (masPesado, num_en_cola2+1):
+            tiempo_arrivo2[1][j] = tiempo_arrivo2[1][j+1]
+            tiempo_arrivo2[0][j] = tiempo_arrivo2[0][j+1]
+
 
 
 def partida2_B():
@@ -437,11 +445,12 @@ def partida2_B():
     global total_de_demoras
     global num_cliente_demorados
     masPesado =1
-    for i in range (1, num_en_cola2+1):
-        valor1 = tiempo_arrivo2[1][i]
-        valor2 = tiempo_arrivo2[1][i+ 1]
-        if valor2 > valor1:
-            masPesado = i+1
+    if (num_en_cola2 > 1):
+        for i in range (1, 100):
+            valor1 = tiempo_arrivo2[1][i]
+            valor2 = tiempo_arrivo2[1][i+ 1]
+            if valor2 > valor1:
+                masPesado = i+1
     if (num_en_cola2==0):
         estado_server2_B=0
         tiempo_proximo_evento[5]= 1000000000000000000000
@@ -451,8 +460,9 @@ def partida2_B():
         total_de_demoras = total_de_demoras + demora
         num_cliente_demorados= num_cliente_demorados+1
         tiempo_proximo_evento[5]= tiempo + expon(media_servicio2_B)
-        tiempo_arrivo2[1][masPesado] = 0
-        tiempo_arrivo2[0][masPesado] = 0
+        for j in range(masPesado, num_en_cola2 + 1):
+            tiempo_arrivo2[1][j] = tiempo_arrivo2[1][j + 1]
+            tiempo_arrivo2[0][j] = tiempo_arrivo2[0][j + 1]
 
 
 def partida2_C():
@@ -465,11 +475,12 @@ def partida2_C():
     global total_de_demoras
     global num_cliente_demorados
     masPesado =1
-    for i in range (1, num_en_cola2+1):
-        valor1 = tiempo_arrivo2[1][i]
-        valor2 = tiempo_arrivo2[1][i + 1]
-        if valor2 > valor1:
-            masPesado = i+1
+    if (num_en_cola2 > 1):
+        for i in range (1, 100):
+            valor1 = tiempo_arrivo2[1][i]
+            valor2 = tiempo_arrivo2[1][i + 1]
+            if valor2 > valor1:
+                masPesado = i+1
     if (num_en_cola2==0):
         estado_server2_C=0
         tiempo_proximo_evento[6]= 1000000000000000000000
@@ -479,8 +490,9 @@ def partida2_C():
         total_de_demoras = total_de_demoras + demora
         num_cliente_demorados= num_cliente_demorados+1
         tiempo_proximo_evento[6]= tiempo + expon(media_servicio2_C)
-        tiempo_arrivo2[1][masPesado] = 0
-        tiempo_arrivo2[0][masPesado] = 0
+        for j in range(masPesado, num_en_cola2 + 1):
+            tiempo_arrivo2[1][j] = tiempo_arrivo2[1][j + 1]
+            tiempo_arrivo2[0][j] = tiempo_arrivo2[0][j + 1]
 
 def actualizar_estadisticos():
     global tiempo

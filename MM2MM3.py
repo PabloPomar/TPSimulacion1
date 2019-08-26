@@ -530,4 +530,111 @@ def main():
             print("Error al detectar tipo de evento")
     reportaje()
 
-main()
+
+global promDemTotal
+promDemTotal = 0
+global num_prom_cola1_ATotal
+num_prom_cola1_ATotal = 0
+global num_prom_cola1_BTotal
+num_prom_cola1_BTotal = 0
+global num_prom_cola2Total
+num_prom_cola2Total = 0
+global utilizacionServer1_Atotal
+utilizacionServer1_Atotal =0
+global utilizacionServer1_Btotal
+utilizacionServer1_Btotal = 0
+global utilizacionServer2_Atotal
+utilizacionServer2_Atotal = 0
+global utilizacionServer2_Btotal
+utilizacionServer2_Btotal = 0
+global utilizacionServer2_Ctotal
+utilizacionServer2_Ctotal = 0
+
+def salvarEstadisticos():
+    global total_de_demoras
+    global num_cliente_demorados
+    global area_num_en_cola1_A
+    global area_num_en_cola1_B
+    global area_num_en_cola2
+    global area_estado_server1_A
+    global area_estado_server1_B
+    global area_estado_server2_A
+    global area_estado_server2_B
+    global area_estado_server2_C
+    global tiempo
+    global promDemTotal
+    global num_prom_cola1_ATotal
+    global num_prom_cola1_BTotal
+    global num_prom_cola2Total
+    global utilizacionServer1_Atotal
+    global utilizacionServer1_Btotal
+    global utilizacionServer2_Atotal
+    global utilizacionServer2_Btotal
+    global utilizacionServer2_Ctotal
+    promDemTotal = promDemTotal + total_de_demoras/num_cliente_demorados
+    num_prom_cola1_ATotal = num_prom_cola1_ATotal + area_num_en_cola1_A /tiempo
+    num_prom_cola1_BTotal = num_prom_cola1_BTotal + area_num_en_cola1_B /tiempo
+    num_prom_cola2Total = num_prom_cola2Total + area_num_en_cola2 /tiempo
+    utilizacionServer1_Atotal = utilizacionServer1_Atotal + area_estado_server1_A/tiempo
+    utilizacionServer1_Btotal = utilizacionServer1_Btotal + area_estado_server1_B / tiempo
+    utilizacionServer2_Atotal = utilizacionServer2_Atotal + area_estado_server2_A/tiempo
+    utilizacionServer2_Btotal = utilizacionServer2_Btotal + area_estado_server2_B / tiempo
+    utilizacionServer2_Ctotal = utilizacionServer2_Ctotal + area_estado_server2_C / tiempo
+
+def mainCorrida():
+    global num_eventos
+    global mediana_servicio
+    global mediana_entrearrivos
+    global num_demora_requerido
+    global num_cliente_demorados
+    global sig_tipo_evento
+    num_eventos = 6
+    inicializar()
+    while (num_cliente_demorados< num_demora_requerido):
+        timing()
+        actualizar_estadisticos()
+        if sig_tipo_evento == 1:
+            arrivo1()
+        elif sig_tipo_evento == 2:
+            partida1_A()
+            arrivo2()
+        elif sig_tipo_evento == 3:
+            partida1_B()
+            arrivo2()
+        elif sig_tipo_evento == 4:
+            partida2_A()
+        elif sig_tipo_evento == 5:
+            partida2_B()
+        elif sig_tipo_evento == 6:
+            partida2_C()
+        else:
+            print("Error al detectar tipo de evento")
+    salvarEstadisticos()
+
+def reportajeCorrida(n):
+    global promDemTotal
+    global num_prom_cola1_ATotal
+    global num_prom_cola1_BTotal
+    global num_prom_cola2Total
+    global utilizacionServer1_Atotal
+    global utilizacionServer1_Btotal
+    global utilizacionServer2_Atotal
+    global utilizacionServer2_Btotal
+    global utilizacionServer2_Ctotal
+    print("Promedio de demoras total en cola:" + str(promDemTotal/n))
+    print("Numero promedio de clientes en cola 1 A Total:" + str (num_prom_cola1_ATotal/n))
+    print("Numero promedio de clientes en cola 1 B Total:" + str ( num_prom_cola1_BTotal /n))
+    print("Numero promedio de clientes en cola 2 Total:" + str ( num_prom_cola2Total/n))
+    print("Utilizacion del server 1 A Total:" + str(utilizacionServer1_Atotal/n))
+    print("Utilizacion del server 1 B Total:" + str(utilizacionServer1_Btotal/n))
+    print("Utilizacion del server 2 A Total:" + str(utilizacionServer2_Atotal/n))
+    print("Utilizacion del server 2 B Total:" + str(utilizacionServer2_Btotal/n))
+    print("Utilizacion del server 2 C Total:" + str(utilizacionServer2_Ctotal/n))
+
+
+def corrida():
+    for c in range (0, 30):
+        mainCorrida()
+    reportajeCorrida(30)
+
+corrida()

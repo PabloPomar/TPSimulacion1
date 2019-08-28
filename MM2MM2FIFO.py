@@ -5,15 +5,15 @@ import math
 import random
 
 global media_entrearrivos
-media_entrearrivos = 10
+media_entrearrivos = 1/10
 global media_servicio1_A
-media_servicio1_A = 7
+media_servicio1_A = 1/7
 global media_servicio1_B
-media_servicio1_B = 5
+media_servicio1_B = 1/5
 global media_servicio2_A
-media_servicio2_A = 5
+media_servicio2_A = 1/5
 global media_servicio2_B
-media_servicio2_B = 5
+media_servicio2_B = 1/5
 
 global tiempo
 global limite_cola

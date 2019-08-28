@@ -1,4 +1,4 @@
-# Idea de mejora: En vista que el servidor 2_C practicamente no se usa, se plantea eliminarlo
+# Idea de mejora: En vista que el servidor 2_C practicamente no se usa, se plantea eliminarlo.
 
 import numpy as np
 import math

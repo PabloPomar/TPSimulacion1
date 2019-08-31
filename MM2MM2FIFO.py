@@ -435,7 +435,7 @@ def reportaje():
     global area_estado_server2_A
     global area_estado_server2_B
     global tiempo
-    print("Promedio de demoras en cola:" + str((total_de_demoras)/ num_cliente_demorados))
+    print("Promedio de demoras en cola:" + str((total_de_demoras)/ num_cliente_demorados) + " horas")
     print("Numero promedio de clientes en cola 1 A:" + str (area_num_en_cola1_A /tiempo))
     print("Numero promedio de clientes en cola 1 B:" + str (area_num_en_cola1_B /tiempo))
     print("Numero promedio de clientes en cola 2:" + str (area_num_en_cola2 /tiempo))
@@ -457,11 +457,11 @@ def main():
     num_eventos = 5
     # Mostrar los parametros iniciales
     print("----------------------------COMIENZO SIMULACION MM2MM3--------------------------")
-    print("Tiempo de mediana entre arrivos:" +str(media_entrearrivos) + " minutos")
-    print("Tiempo de mediana de servicio server 1_A:" +str(media_servicio1_A) + " minutos")
-    print("Tiempo de mediana de servicio server 1_B:" + str(media_servicio1_B) + " minutos")
-    print("Tiempo de mediana de servicio server 2_A:" + str(media_servicio2_A) + " minutos")
-    print("Tiempo de mediana de servicio server 2_B:" + str(media_servicio2_B) + " minutos")
+    print("Tiempo de mediana entre arrivos:" +str(media_entrearrivos) + " horas")
+    print("Tiempo de mediana de servicio server 1_A:" +str(media_servicio1_A) + " horas")
+    print("Tiempo de mediana de servicio server 1_B:" + str(media_servicio1_B) + " horas")
+    print("Tiempo de mediana de servicio server 2_A:" + str(media_servicio2_A) + " horas")
+    print("Tiempo de mediana de servicio server 2_B:" + str(media_servicio2_B) + " horas")
     print("Numero de clientes: " + str(num_demora_requerido))
     #inicializar la simulacion
     inicializar()

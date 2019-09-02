@@ -371,7 +371,7 @@ def arrivo2():
     global num_en_cola2
     global num_en_cola
     global limite_cola
-    global tiempo_arrivo1_A
+    global tiempo_arrivo2
     global total_de_demoras
     global num_cliente_demorados
     servers = todosOcupados()

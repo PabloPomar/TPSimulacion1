@@ -337,7 +337,7 @@ def arrivo2():
     global num_en_cola2
     global num_en_cola
     global limite_cola
-    global tiempo_arrivo1_A
+    global tiempo_arrivo2
     global total_de_demoras
     global num_cliente_demorados
     servers = todosOcupados()
@@ -474,7 +474,7 @@ def reportaje():
     global area_estado_server2_B
     global area_estado_server2_C
     global tiempo
-    print("Promedio de demoras en cola:" + str((total_de_demoras)/ (num_cliente_demorados*5)) + "Horas")
+    print("Promedio de demoras en cola:" + str((total_de_demoras)/ (num_cliente_demorados)) + "Horas")
     print("Numero promedio de clientes en cola 1 A:" + str (area_num_en_cola1_A /tiempo))
     print("Numero promedio de clientes en cola 1 B:" + str (area_num_en_cola1_B /tiempo))
     print("Numero promedio de clientes en cola 2:" + str (area_num_en_cola2 /tiempo))
@@ -638,3 +638,5 @@ def corrida():
     reportajeCorrida(30)
 
 corrida()
+
+#main()

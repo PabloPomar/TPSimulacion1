@@ -564,7 +564,7 @@ def main():
     print("Numero de clientes: " + str(num_demora_requerido))
     #inicializar la simulacion
     inicializar()
-    #Correr la simulacion mientras mas numeros de demora sean requeridos
+    #Correr la simulacion mientras mas numeros de demora sean requeridos.
     while (num_cliente_demorados< num_demora_requerido):
         #determinar el siguiente evento
         timing()

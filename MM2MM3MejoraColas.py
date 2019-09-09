@@ -701,6 +701,7 @@ def reportajeCorrida(n):
     print("Numero promedio de clientes en cola 2 A Total:" + str ( num_prom_cola2ATotal/n))
     print("Numero promedio de clientes en cola 2 B Total:" + str(num_prom_cola2BTotal / n))
     print("Numero promedio de clientes en cola 2 C Total:" + str(num_prom_cola2CTotal / n))
+    print("Numero promedio total en segunda instancia: " + str((num_prom_cola2ATotal + num_prom_cola2BTotal + num_prom_cola2CTotal)/ n))
     print("Utilizacion del server 1 A Total:" + str(utilizacionServer1_Atotal/n))
     print("Utilizacion del server 1 B Total:" + str(utilizacionServer1_Btotal/n))
     print("Utilizacion del server 2 A Total:" + str(utilizacionServer2_Atotal/n))

@@ -633,9 +633,9 @@ def reportajeCorrida(n):
 
 
 def corrida():
-    for c in range (0, 30):
+    for c in range (0, 100):
         mainCorrida()
-    reportajeCorrida(30)
+    reportajeCorrida(100)
 
 corrida()
 

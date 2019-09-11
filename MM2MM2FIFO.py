@@ -160,7 +160,7 @@ def arrivo1():
     tiempo_proximo_evento[1] = tiempo + expon(media_entrearrivos)
     estado = servers1ocupados()
     if estado == 1:
-        if num_en_cola1_A<num_en_cola1_B:
+        if num_en_cola1_A <= num_en_cola1_B:
             num_en_cola1_A = num_en_cola1_A + 1
             num_en_cola = num_en_cola + 1
             if (num_en_cola1_A > limite_cola):

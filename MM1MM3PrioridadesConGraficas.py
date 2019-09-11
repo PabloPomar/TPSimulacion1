@@ -237,7 +237,7 @@ def arrivo1():
     estado = servers1ocupados()
     peso = returnRandom()
     if estado == 1:
-        if num_en_cola1_A<num_en_cola1_B:
+        if num_en_cola1_A <= num_en_cola1_B:
             num_en_cola1_A = num_en_cola1_A + 1
             num_en_cola = num_en_cola + 1
             if (num_en_cola1_A > limite_cola):

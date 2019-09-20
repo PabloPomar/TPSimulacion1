@@ -605,7 +605,7 @@ def actualizar_estadisticos():
     plotCola1B.append(num_en_cola1_B)
     plotCola2.append(num_en_cola2)
     plotCola2Prom.append(np.mean(plotCola2))
-    plotCola1AProm.append(np.mean(plotCola1A))
+    plotCola1AProm.append(np.sum(plotCola1A)/len(plotCola1A))
     plotCola1BProm.append(np.mean(plotCola1B))
     plotServ1A.append(estado_server1_A)
     plotServ1B.append(estado_server1_B)
@@ -818,14 +818,15 @@ def salvarEstadisticos():
     utilizacionServer2_Btotal = utilizacionServer2_Btotal + area_estado_server2_B / tiempo
     utilizacionServer2_Ctotal = utilizacionServer2_Ctotal + area_estado_server2_C / tiempo
 
-    plt.plot(plotClientesDem, plotDemoraProm, 1)
-    plt.ylabel("Promedio de demoras")
-    plt.xlabel("Numero de clientes que completaron su demora")
+    #plt.plot(plotClientesDem, plotDemoraProm, 1)
+    #plt.ylabel("Promedio de demoras")
+    #plt.xlabel("Numero de clientes que completaron su demora")
 
     #plt.plot(plotTiempo1A, plotCola1AProm, 1)
     #plt.ylabel("Numero de clientes en cola 1 A")
     #plt.xlabel("Tiempo")
     #plt.ylim(0, 20)
+
 
     #plt.plot(plotTiempo1A , plotCola1BProm, 1)
     #plt.ylabel("Numero de clientes en cola 1 B")

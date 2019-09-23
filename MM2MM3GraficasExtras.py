@@ -818,9 +818,9 @@ def salvarEstadisticos():
     utilizacionServer2_Btotal = utilizacionServer2_Btotal + area_estado_server2_B / tiempo
     utilizacionServer2_Ctotal = utilizacionServer2_Ctotal + area_estado_server2_C / tiempo
 
-    plt.plot(plotClientesDem, plotDemoraProm, 1)
-    plt.ylabel("Promedio de demoras")
-    plt.xlabel("Numero de clientes que completaron su demora")
+    #plt.plot(plotClientesDem, plotDemoraProm, 1)
+    #plt.ylabel("Promedio de demoras")
+    #plt.xlabel("Numero de clientes que completaron su demora")
 
     #plt.plot(plotTiempo1A, plotCola1AProm, 1)
     #plt.ylabel("Numero de clientes en cola 1 A")

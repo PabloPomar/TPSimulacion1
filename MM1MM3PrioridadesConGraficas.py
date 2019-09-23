@@ -66,8 +66,10 @@ tiempo_arrivo2=[[0] * m for i in range(n)]
 
 global plotDemora
 global plotClientesDem
+global plotDemNoAcum
 plotDemora = []
 plotClientesDem = []
+plotDemNoAcum = []
 
 global plotTiempo1A
 global plotTiempo1B
@@ -142,6 +144,7 @@ def inicializar():
     global plotServ2A
     global plotServ2B
     global plotServ2C
+    global plotDemNoAcum
     #inicializar reloj
     tiempo=0
     plotTiempo1A.append(tiempo)
@@ -169,6 +172,9 @@ def inicializar():
     #incializar contadores estadisticos
     num_cliente_demorados = 0
     total_de_demoras = 0
+    plotClientesDem.append(num_cliente_demorados)
+    plotDemora.append(total_de_demoras)
+    plotDemNoAcum.append(total_de_demoras)
     area_num_en_cola1_A = 0
     area_num_en_cola1_B = 0
     area_num_en_cola2 = 0
@@ -233,6 +239,7 @@ def arrivo1():
     global tiempo_arrivo1_B
     global plotDemora
     global plotClientesDem
+    global plotDemNoAcum
     tiempo_proximo_evento[1] = tiempo + expon(media_entrearrivos)
     estado = servers1ocupados()
     peso = returnRandom()
@@ -261,6 +268,7 @@ def arrivo1():
         demora=0
         total_de_demoras= total_de_demoras+ demora
         plotDemora.append(total_de_demoras)
+        plotDemNoAcum.append(demora)
         num_cliente_demorados= num_cliente_demorados+1
         plotClientesDem.append(num_cliente_demorados)
         estado_server1_B=1
@@ -269,6 +277,7 @@ def arrivo1():
         demora=0
         total_de_demoras= total_de_demoras+ demora
         plotDemora.append(total_de_demoras)
+        plotDemNoAcum.append(demora)
         num_cliente_demorados= num_cliente_demorados+1
         plotClientesDem.append(num_cliente_demorados)
         estado_server1_A=1
@@ -277,6 +286,7 @@ def arrivo1():
         demora=0
         total_de_demoras= total_de_demoras+ demora
         plotDemora.append(total_de_demoras)
+        plotDemNoAcum.append(demora)
         num_cliente_demorados= num_cliente_demorados+1
         plotClientesDem.append(num_cliente_demorados)
         estado_server1_A=1
@@ -297,6 +307,7 @@ def partida1_A():
     global num_cliente_demorados
     global plotDemora
     global plotClientesDem
+    global plotDemNoAcum
     masPesado =1
     if (num_en_cola1_A>1):
         for i in range (1, 100):
@@ -313,6 +324,7 @@ def partida1_A():
         total_de_demoras = total_de_demoras + demora
         num_cliente_demorados= num_cliente_demorados+1
         plotDemora.append(total_de_demoras)
+        plotDemNoAcum.append(demora)
         plotClientesDem.append(num_cliente_demorados)
         tiempo_proximo_evento[2]= tiempo + expon(media_servicio1_A)
         for j in range (masPesado, num_en_cola1_A+1):
@@ -331,6 +343,7 @@ def partida1_B():
     global num_cliente_demorados
     global plotDemora
     global plotClientesDem
+    global plotDemNoAcum
     masPesado =1
     if ( num_en_cola1_B>1):
         for i in range (1, 100):
@@ -345,6 +358,7 @@ def partida1_B():
         num_en_cola1_B=num_en_cola1_B-1
         demora = tiempo - tiempo_arrivo1_B[0][masPesado]
         total_de_demoras = total_de_demoras + demora
+        plotDemNoAcum.append(demora)
         num_cliente_demorados= num_cliente_demorados+1
         plotDemora.append(total_de_demoras)
         plotClientesDem.append(num_cliente_demorados)
@@ -394,6 +408,7 @@ def arrivo2():
     global num_cliente_demorados
     global plotDemora
     global plotClientesDem
+    global plotDemNoAcum
     servers = todosOcupados()
     peso = returnRandom()
     if (servers==1):
@@ -411,6 +426,7 @@ def arrivo2():
         demora=0
         total_de_demoras= total_de_demoras+ demora
         plotDemora.append(total_de_demoras)
+        plotDemNoAcum.append(demora)
         if desocupado == 1:
             num_cliente_demorados= num_cliente_demorados+1
             plotClientesDem.append(num_cliente_demorados)
@@ -439,6 +455,7 @@ def partida2_A():
     global num_cliente_demorados
     global plotDemora
     global plotClientesDem
+    global plotDemNoAcum
     masPesado =1
     if(num_en_cola2>1):
         for i in range (1, 100):
@@ -455,6 +472,7 @@ def partida2_A():
         total_de_demoras = total_de_demoras + demora
         num_cliente_demorados= num_cliente_demorados+1
         plotDemora.append(total_de_demoras)
+        plotDemNoAcum.append(demora)
         plotClientesDem.append(num_cliente_demorados)
         tiempo_proximo_evento[4]= tiempo + expon(media_servicio2_A)
         for j in range (masPesado, num_en_cola2+1):
@@ -474,6 +492,7 @@ def partida2_B():
     global num_cliente_demorados
     global plotDemora
     global plotClientesDem
+    global plotDemNoAcum
     masPesado =1
     if (num_en_cola2 > 1):
         for i in range (1, 100):
@@ -490,6 +509,7 @@ def partida2_B():
         total_de_demoras = total_de_demoras + demora
         num_cliente_demorados= num_cliente_demorados+1
         plotDemora.append(total_de_demoras)
+        plotDemNoAcum.append(demora)
         plotClientesDem.append(num_cliente_demorados)
         tiempo_proximo_evento[5]= tiempo + expon(media_servicio2_B)
         for j in range(masPesado, num_en_cola2 + 1):
@@ -508,6 +528,7 @@ def partida2_C():
     global num_cliente_demorados
     global plotDemora
     global plotClientesDem
+    global plotDemNoAcum
     masPesado =1
     if (num_en_cola2 > 1):
         for i in range (1, 100):
@@ -524,6 +545,7 @@ def partida2_C():
         total_de_demoras = total_de_demoras + demora
         num_cliente_demorados= num_cliente_demorados+1
         plotDemora.append(total_de_demoras)
+        plotDemNoAcum.append(demora)
         plotClientesDem.append(num_cliente_demorados)
         tiempo_proximo_evento[6]= tiempo + expon(media_servicio2_C)
         for j in range(masPesado, num_en_cola2 + 1):
@@ -609,6 +631,7 @@ def reportaje():
     global plotServ2A
     global plotServ2B
     global plotServ2C
+    global plotDemNoAcum
     print("Promedio de demoras en cola:" + str((total_de_demoras)/ num_cliente_demorados) + " horas")
     print("Numero promedio de clientes en cola 1 A:" + str (area_num_en_cola1_A /tiempo))
     print("Numero promedio de clientes en cola 1 B:" + str (area_num_en_cola1_B /tiempo))
@@ -663,6 +686,11 @@ def reportaje():
     plt.plot(plotTiempo2, plotServ2C, 9)
     plt.ylabel("Uso del servidor 2 C ")
     plt.xlabel("Tiempo")
+    plt.show()
+
+    plt.plot(plotClientesDem, plotDemNoAcum, 10)
+    plt.ylabel("demoras")
+    plt.xlabel("Numero de clientes que completaron su demora")
     plt.show()
 
 def main():
